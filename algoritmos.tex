@@ -1,0 +1,60 @@
+\section{Algoritmos}
+
+\subsection{Kruskal}
+El algoritmo de Kruskal es un algoritmo de la teoria de grafos para encontrar un arbol recubridor minimo en un grafo conexo y ponderado. Es decir, busca un subconjunto de aristas que, formando un arbol, incluyen todos los vertices y donde el valor de la suma de todas las aristas del arbol es el minimo posible.
+
+\subsubsection{Estructura de Datos:}
+UnionFind
+
+\subsubsection{Implementacion:}
+\begin{lstlisting}[style=cpp]
+int kruskal(int n, vector<Edge>& edges) {
+    sort(edges.begin(), edges.end()); // Ordenar aristas por peso
+    UnionFind uf(n);
+    int mstWeight = 0;
+
+    for (const auto& edge : edges) {
+        if (!uf.same_set(edge.u, edge.v)) {
+            uf.union_set(edge.u, edge.v);
+            mstWeight += edge.weight;
+        }
+    }
+
+    return mstWeight;
+}
+
+int main() {
+    int n, m; // Numero de vertices y aristas
+    cin >> n >> m;
+
+    vector<Edge> edges;
+    for (int i = 0; i < m; ++i) {
+        int u, v, weight;
+        cin >> u >> v >> weight;
+        edges.push_back({u, v, weight});
+    }
+
+    int mstWeight = kruskal(n, edges);
+    cout << "Peso del arbol generador minimo: " << mstWeight << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Busqueda binaria}
+La busqueda binaria es un algoritmo eficiente para encontrar un valor en un arreglo ordenado. La busqueda binaria compara el valor buscado con el valor en el medio del arreglo. Si el valor buscado es menor, se busca en la mitad inferior del arreglo. Si el valor buscado es mayor, se busca en la mitad superior del arreglo. Este proceso se repite hasta que el valor sea encontrado o el subarreglo tenga tamaño 0. 
+
+\subsubsection{Implementacion:}
+\begin{lstlisting}[style=cpp]
+int binary_search(const vector<int>& nums, int target) {
+    int l = 0, r = nums.size() - 1;
+    while (l <= r) {
+        int mid = l + (r - l) / 2;
+        if (nums[mid] == target) return mid;
+        if (nums[mid] < target) l = mid + 1;
+        else r = mid - 1;
+    }
+    return -1;
+}
+\end{lstlisting}
+
