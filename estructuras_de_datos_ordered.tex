@@ -1,0 +1,408 @@
+\section{Estructuras de datos}
+\label{sec:estructuras_de_datos}
+
+\subsection{Adjacency Matrix}
+\label{subsec:adjacency_matrix}
+% Explicacion
+Matriz donde cada celda representa una arista entre dos nodos. 
+
+\subsubsection{Implementacion:}
+% Code
+\begin{lstlisting}[style=cpp]
+const int V;
+bool adj[V][V];
+int weight[V][V];
+\end{lstlisting}
+
+\subsection{Adjacency list}
+\label{subsec:adjacency_list}
+% Explicacion
+Lista de adyacencia donde cada nodo tiene una lista de nodos adyacentes.
+
+\subsubsection{Implementacion:}
+% Code
+\begin{lstlisting}[style=cpp]
+const int V;
+vector<int> adj[V];
+vector<int> weight[V];
+\end{lstlisting}
+
+\subsection{Binary Search Tree}
+\label{subsec:binary_search_tree}
+% Explicacion
+Estructura de datos que permite almacenar elementos de forma ordenada. Cada nodo tiene a lo más dos hijos, el hijo izquierdo es menor que el nodo y el hijo derecho es mayor. 
+
+\subsubsection{Implementacion:}
+% Code 
+\begin{lstlisting}[style=cpp]
+struct Node {
+  int value;
+  Node* left;
+  Node* right;
+  Node(int value): value(value), left(nullptr), right(nullptr) {}
+};
+
+class BST {
+  Node* root;
+public:
+  BST(): root(nullptr) {}
+
+  void insert(int value) {
+    root = insert(root, value);
+  }
+  Node* insert(Node* node, int value) {
+    if (node == nullptr) {
+      return new Node(value);
+    }
+    if (value < node->value) {
+      node->left = insert(node->left, value);
+    } else {
+      node->right = insert(node->right, value);
+    }
+    return node;
+  }
+
+  void erase(int value) {
+    root = erase(root, value);
+  }
+  Node* erase(Node* node, int value) {
+    if (node == nullptr) {
+      return nullptr;
+    }
+    if (value < node->value) {
+      node->left = erase(node->left, value);
+    } else if (value > node->value) {
+      node->right = erase(node->right, value);
+    } else {
+      if (node->left == nullptr) {
+        Node* right = node->right;
+        delete node;
+        return right;
+      }
+      if (node->right == nullptr) {
+        Node* left = node->left;
+        delete node;
+        return left;
+      }
+      Node* min = find_min(node->right);
+      node->value = min->value;
+      node->right = erase(node->right, min->value);
+    }
+    return node;
+  }
+
+  Node* find_min(Node* node) {
+    while (node->left != nullptr) {
+      node = node->left;
+    }
+    return node;
+  }
+  Node* find_max(Node* node) {
+    while (node->right != nullptr) {
+      node = node->right;
+    }
+    return node;
+  }
+
+  bool find(int value) {
+    return find(root, value);
+  }
+  bool find(Node* node, int value) {
+    if (node == nullptr) {
+      return false;
+    }
+    if (value < node->value) {
+      return find(node->left, value);
+    }
+    if (value > node->value) {
+      return find(node->right, value);
+    }
+    return true;
+  }
+};
+
+\subsection{Heap}
+\label{subsec:heap}
+% Explicacion
+Estructura de datos que permite mantener un conjunto de elementos y obtener el máximo o mínimo en tiempo constante. 
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{priority\_queue<type> name;}
+  \item Para un heap mínimo: \texttt{priority\_queue<type, vector<type>, greater<type>> name;}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{push(value)}: Agrega un elemento al heap [O(log n)].
+  \item \texttt{pop()}: Elimina el elemento del tope [O(log n)].
+  \item \texttt{top()}: Retorna el elemento del tope [O(1)].
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(1)].
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)]. 
+\end{itemize}
+
+\subsection{Union Find}
+\label{subsec:union_find}
+% Explicacion
+Estructura de datos que permite realizar operaciones de unión y búsqueda en tiempo constante. 
+
+\subsubsection{Implementacion:}
+% Code
+\begin{lstlisting}[style=cpp]
+struct edge{
+    ll from,to,weight;
+};
+
+struct union_find {
+  vector<int> e;
+  union_find(int n) { e.assign(n, -1); }
+  int findSet (int x) { 
+    return (e[x] < 0 ? x : e[x] = findSet(e[x]));
+  }
+  bool sameSet (int x, int y) { return findSet(x) == findSet(y); }
+  int size (int x) { return -e[findSet(x)]; }
+  bool unionSet (int x, int y) {
+    x = findSet(x), y = findSet(y);
+    if (x == y) return 0;
+    if (e[x] > e[y]) swap(x, y);
+    e[x] += e[y], e[y] = x;
+    return 1;
+  }
+};
+\end{lstlisting}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{findSet(x)}: Retorna el representante del conjunto al que pertenece 'x' [O(1)].
+  \item \texttt{sameSet(x, y)}: Retorna \texttt{true} si 'x' y 'y' pertenecen al mismo conjunto [O(1)].
+  \item \texttt{size(x)}: Retorna el tamaño del conjunto al que pertenece 'x' [O(1)].
+  \item \texttt{unionSet(x, y)}: Une los conjuntos a los que pertenecen 'x' y 'y' [O(1)].
+\end{itemize}
+
+\subsection{array}
+\label{subsec:std_array}
+Contenedor de tamaño fijo. 
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{type name [size];}
+  \item Inicializar con ceros: \texttt{int baz [5] = \{ \};}
+  \item Inicializar con valores: \texttt{int foo [5] = \{ 16, 2, 77, 40, 12071 \};}
+\end{itemize}
+
+\subsection{deque}
+\label{subsec:std_deque}
+% Explicacion
+Contenedor de secuencia que permite inserciones y eliminaciones en cualquier posición en tiempo constante.
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{deque<type> name;}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{push\_back(value)}: Agrega un elemento al final [O(1)].
+  \item \texttt{push\_front(value)}: Agrega un elemento al principio [O(1)].
+  \item \texttt{pop\_back()}: Elimina el último elemento [O(1)].
+  \item \texttt{pop\_front()}: Elimina el primer elemento [O(1)].
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(1)].
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)].
+  \item \texttt{clear()}: Elimina todos los elementos [O(n)].
+  \item \texttt{front()}: Retorna el primer elemento [O(1)].
+  \item \texttt{back()}: Retorna el último elemento [O(1)].
+  \item \texttt{insert(iterator, value)}: Inserta un elemento en la posición indicada [O(n)]. 
+\end{itemize}
+
+
+\subsection{list}
+\label{subsec:std_list}
+Contenedor de secuencia que permite inserciones y eliminaciones en cualquier posición en tiempo constante. 
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{list<type> name;}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{push\_back(value)}: Agrega un elemento al final [O(1)].
+  \item \texttt{push\_front(value)}: Agrega un elemento al principio [O(1)].
+  \item \texttt{pop\_back()}: Elimina el último elemento [O(1)].
+  \item \texttt{pop\_front()}: Elimina el primer elemento [O(1)].
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(n)].
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)].
+  \item \texttt{clear()}: Elimina todos los elementos [O(n)].
+  \item \texttt{front()}: Retorna el primer elemento [O(1)].
+  \item \texttt{back()}: Retorna el último elemento [O(1)].
+  \item \texttt{insert(iterator, value, r)}: Inserta un elemento en la posición indicada [O(r)].
+  \item \texttt{erase(iterator)}: Elimina el elemento en la posición indicada [O(1)]. 
+\end{itemize}
+
+\subsection{map}
+\label{subsec:std_map}
+% Explicacion
+Contenedor que almacena pares clave-valor ordenados por la clave. La función del comparador es comparar las claves de los elementos, esto sirve para mantener el orden de los elementos.
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{map<key, value> name;}
+  \item Con comparador: \texttt{map<key, value, comp> name;}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{operator[key]}: Retorna el valor asociado a la clave 'key' [O(log n)].
+  \item \texttt{insert(pair)}: Inserta un par clave-valor [O(log n)]. 
+  \item \texttt{erase(key)}: Elimina el elemento con clave 'key' [O(log n)].
+  \item \texttt{erase(iterator)}: Elimina el elemento en la posición indicada [O(1)].
+  \item \texttt{erase(first, last)}: Elimina los elementos en el rango [O(n)].
+  \item \texttt{find(key)}: Retorna un iterador al elemento con clave 'key' [O(log n)]. 
+  \item \texttt{count(key)}: Retorna la cantidad de elementos con clave 'key' [O(log n)]. 
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(1)]. 
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)]. 
+  \item \texttt{clear()}: Elimina todos los elementos [O(n)]. 
+\end{itemize}
+
+\subsection{priority\_queue}
+\label{subsec:std_priority_queue}
+Cola de prioridad. Su funcionamiento es similar a una cola, pero los elementos son extraídos en orden de prioridad. Para definirla hay que especificar el tipo de dato y el contenedor que se usará internamente y el comparador (\ref{subsec:comparador}).
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{priority\_queue<type> name;}
+  \item Syntaxis con comparador: \texttt{priority\_queue<type, vector<type>, greater<type>> name;}
+\end{itemize}
+
+\subsection{queue}
+\label{subsec:std_queue}
+Contenedor de tipo FIFO (First In, First Out). 
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{queue<type> name;}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{push(value)}: Agrega un elemento al final [O(1)].
+  \item \texttt{pop()}: Elimina el primer elemento [O(1)].
+  \item \texttt{front()}: Retorna el primer elemento [O(1)].
+  \item \texttt{back()}: Retorna el último elemento [O(1)].
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(1)].
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)]. 
+\end{itemize}
+
+\subsection{set}
+\label{subsec:std_set}
+% Explicacion
+Contenedor que almacena elementos únicos ordenados. 
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{set<type> name;}
+  \item Con comparador: \texttt{set<type, comp> name;}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{insert(value)}: Inserta un elemento [O(log n)]. 
+  \item \texttt{erase(value)}: Elimina el elemento con valor 'value' [O(log n)].
+  \item \texttt{erase(iterator)}: Elimina el elemento en la posición indicada [O(1)].
+  \item \texttt{erase(first, last)}: Elimina los elementos en el rango [O(n)].
+  \item \texttt{find(value)}: Retorna un iterador al elemento con valor 'value' [O(log n)]. 
+  \item \texttt{count(value)}: Retorna la cantidad de elementos con valor 'value' [O(log n)]. 
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(1)]. 
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)]. 
+  \item \texttt{clear()}: Elimina todos los elementos [O(n)]. 
+\end{itemize}
+
+\subsection{stack}
+\label{subsec:std_stack}
+Contenedor de tipo LIFO (Last In, First Out). 
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{stack<type> name;}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{push(value)}: Agrega un elemento al tope [O(1)].
+  \item \texttt{pop()}: Elimina el elemento del tope [O(1)].
+  \item \texttt{top()}: Retorna el elemento del tope [O(1)].
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(1)].
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)]. 
+\end{itemize}
+
+\subsection{unordered\_map}
+\label{subsec:std_unordered_map}
+% Explicacion
+Contenedor que almacena pares clave-valor sin ordenar. 
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{unordered\_map<key, value> name;}
+  \item Con comparador: \texttt{unordered\_map<key, value, comp> name;}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{operator[key]}: Retorna el valor asociado a la clave 'key' [O(log n)].
+  \item \texttt{insert(pair)}: Inserta un par clave-valor [O(log n)]. 
+  \item \texttt{erase(key)}: Elimina el elemento con clave 'key' [O(log n)].
+  \item \texttt{erase(iterator)}: Elimina el elemento en la posición indicada [O(1)].
+  \item \texttt{erase(first, last)}: Elimina los elementos en el rango [O(n)].
+  \item \texttt{find(key)}: Retorna un iterador al elemento con clave 'key' [O(log n)]. 
+  \item \texttt{count(key)}: Retorna la cantidad de elementos con clave 'key' [O(log n)]. 
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(1)]. 
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)]. 
+  \item \texttt{clear()}: Elimina todos los elementos [O(n)]. 
+\end{itemize}
+
+\subsection{unordered\_set}
+\label{subsec:std_unordered_set}
+% Explicacion
+Contenedor que almacena elementos únicos sin ordenar. 
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{unordered\_set<type> name;}
+  \item Con comparador: \texttt{unordered\_set<type, comp> name;}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{insert(value)}: Inserta un elemento [O(log n)]. 
+  \item \texttt{erase(value)}: Elimina el elemento con valor 'value' [O(log n)].
+  \item \texttt{erase(iterator)}: Elimina el elemento en la posición indicada [O(1)].
+  \item \texttt{erase(first, last)}: Elimina los elementos en el rango [O(n)].
+  \item \texttt{find(value)}: Retorna un iterador al elemento con valor 'value' [O(log n)]. 
+  \item \texttt{count(value)}: Retorna la cantidad de elementos con valor 'value' [O(log n)]. 
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(1)]. 
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)]. 
+  \item \texttt{clear()}: Elimina todos los elementos [O(n)]. 
+\end{itemize}
+
+\subsection{vector}
+\label{subsec:std_vector}
+Contenedor dinámico de tamaño variable.
+
+\subsubsection{Formas de definirlo:}
+\begin{itemize}
+  \item Syntaxis genérica: \texttt{vector<type> name;}
+  \item Inicializar con ceros: \texttt{vector<int> baz (5);}
+  \item Inicializar con valores: \texttt{vector<int> foo \{ 16, 2, 77, 40, 12071 \};}
+\end{itemize}
+
+\subsubsection{Funciones miembro:}
+\begin{itemize}
+  \item \texttt{push\_back(value)}: Agrega un elemento al final [O(1)].
+  \item \texttt{pop\_back()}: Elimina el último elemento [O(1)].
+  \item \texttt{size()}: Retorna la cantidad de elementos [O(1)].
+  \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)].
+  \item \texttt{clear()}: Elimina todos los elementos [O(n)].
+  \item \texttt{front()}: Retorna el primer elemento [O(1)].
+  \item \texttt{back()}: Retorna el último elemento [O(1)].
+  \item \texttt{insert(iterator, value)}: Inserta un elemento en la posición indicada [O(n)].
+\end{itemize}

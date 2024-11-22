@@ -1,7 +1,7 @@
 \section{Estructuras de datos}
 \label{sec:estructuras_de_datos}
 
-\subsection{std::array}
+\subsection{array}
 \label{subsec:std_array}
 Contenedor de tamaño fijo. 
 
@@ -12,15 +12,15 @@ Contenedor de tamaño fijo.
   \item Inicializar con valores: \texttt{int foo [5] = \{ 16, 2, 77, 40, 12071 \};}
 \end{itemize}
 
-\subsection{std::vector}
+\subsection{vector}
 \label{subsec:std_vector}
 Contenedor dinámico de tamaño variable.
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::vector<type> name;}
-  \item Inicializar con ceros: \texttt{std::vector<int> baz (5);}
-  \item Inicializar con valores: \texttt{std::vector<int> foo \{ 16, 2, 77, 40, 12071 \};}
+  \item Syntaxis genérica: \texttt{vector<type> name;}
+  \item Inicializar con ceros: \texttt{vector<int> baz (5);}
+  \item Inicializar con valores: \texttt{vector<int> foo \{ 16, 2, 77, 40, 12071 \};}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
@@ -35,13 +35,13 @@ Contenedor dinámico de tamaño variable.
   \item \texttt{insert(iterator, value)}: Inserta un elemento en la posición indicada [O(n)].
 \end{itemize}
 
-\subsection{std::list}
+\subsection{list}
 \label{subsec:std_list}
 Contenedor de secuencia que permite inserciones y eliminaciones en cualquier posición en tiempo constante. 
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::list<type> name;}
+  \item Syntaxis genérica: \texttt{list<type> name;}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
@@ -59,13 +59,13 @@ Contenedor de secuencia que permite inserciones y eliminaciones en cualquier pos
   \item \texttt{erase(iterator)}: Elimina el elemento en la posición indicada [O(1)]. 
 \end{itemize}
 
-\subsection{std::stack}
+\subsection{stack}
 \label{subsec:std_stack}
 Contenedor de tipo LIFO (Last In, First Out). 
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::stack<type> name;}
+  \item Syntaxis genérica: \texttt{stack<type> name;}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
@@ -77,13 +77,13 @@ Contenedor de tipo LIFO (Last In, First Out).
   \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)]. 
 \end{itemize}
 
-\subsection{std::queue}
+\subsection{queue}
 \label{subsec:std_queue}
 Contenedor de tipo FIFO (First In, First Out). 
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::queue<type> name;}
+  \item Syntaxis genérica: \texttt{queue<type> name;}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
@@ -96,25 +96,25 @@ Contenedor de tipo FIFO (First In, First Out).
   \item \texttt{empty()}: Retorna \texttt{true} si está vacío [O(1)]. 
 \end{itemize}
 
-\subsection{std::priority\_queue}
+\subsection{priority\_queue}
 \label{subsec:std_priority_queue}
 Cola de prioridad. Su funcionamiento es similar a una cola, pero los elementos son extraídos en orden de prioridad. Para definirla hay que especificar el tipo de dato y el contenedor que se usará internamente y el comparador (\ref{subsec:comparador}).
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::priority\_queue<type> name;}
-  \item Syntaxis con comparador: \texttt{std::priority\_queue<type, std::vector<type>, std::greater<type>> name;}
+  \item Syntaxis genérica: \texttt{priority\_queue<type> name;}
+  \item Syntaxis con comparador: \texttt{priority\_queue<type, vector<type>, greater<type>> name;}
 \end{itemize}
 
-\subsection{std::set}
+\subsection{set}
 \label{subsec:std_set}
 % Explicacion
 Contenedor que almacena elementos únicos ordenados. 
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::set<type> name;}
-  \item Con comparador: \texttt{std::set<type, comp> name;}
+  \item Syntaxis genérica: \texttt{set<type> name;}
+  \item Con comparador: \texttt{set<type, comp> name;}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
@@ -130,15 +130,15 @@ Contenedor que almacena elementos únicos ordenados.
   \item \texttt{clear()}: Elimina todos los elementos [O(n)]. 
 \end{itemize}
 
-\subsection{std::unordered\_set}
+\subsection{unordered\_set}
 \label{subsec:std_unordered_set}
 % Explicacion
 Contenedor que almacena elementos únicos sin ordenar. 
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::unordered\_set<type> name;}
-  \item Con comparador: \texttt{std::unordered\_set<type, comp> name;}
+  \item Syntaxis genérica: \texttt{unordered\_set<type> name;}
+  \item Con comparador: \texttt{unordered\_set<type, comp> name;}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
@@ -154,15 +154,15 @@ Contenedor que almacena elementos únicos sin ordenar.
   \item \texttt{clear()}: Elimina todos los elementos [O(n)]. 
 \end{itemize}
 
-\subsection{std::map}
+\subsection{map}
 \label{subsec:std_map}
 % Explicacion
 Contenedor que almacena pares clave-valor ordenados por la clave. La función del comparador es comparar las claves de los elementos, esto sirve para mantener el orden de los elementos.
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::map<key, value> name;}
-  \item Con comparador: \texttt{std::map<key, value, comp> name;}
+  \item Syntaxis genérica: \texttt{map<key, value> name;}
+  \item Con comparador: \texttt{map<key, value, comp> name;}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
@@ -179,15 +179,15 @@ Contenedor que almacena pares clave-valor ordenados por la clave. La función de
   \item \texttt{clear()}: Elimina todos los elementos [O(n)]. 
 \end{itemize}
 
-\subsection{std::unordered\_map}
+\subsection{unordered\_map}
 \label{subsec:std_unordered_map}
 % Explicacion
 Contenedor que almacena pares clave-valor sin ordenar. 
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::unordered\_map<key, value> name;}
-  \item Con comparador: \texttt{std::unordered\_map<key, value, comp> name;}
+  \item Syntaxis genérica: \texttt{unordered\_map<key, value> name;}
+  \item Con comparador: \texttt{unordered\_map<key, value, comp> name;}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
@@ -204,14 +204,14 @@ Contenedor que almacena pares clave-valor sin ordenar.
   \item \texttt{clear()}: Elimina todos los elementos [O(n)]. 
 \end{itemize}
 
-\subsection{std::deque}
+\subsection{deque}
 \label{subsec:std_deque}
 % Explicacion
 Contenedor de secuencia que permite inserciones y eliminaciones en cualquier posición en tiempo constante.
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::deque<type> name;}
+  \item Syntaxis genérica: \texttt{deque<type> name;}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
@@ -345,8 +345,8 @@ Lista de adyacencia donde cada nodo tiene una lista de nodos adyacentes.
 % Code
 \begin{lstlisting}[style=cpp]
 const int V;
-std::vector<int> adj[V];
-std::vector<int> weight[V];
+vector<int> adj[V];
+vector<int> weight[V];
 \end{lstlisting}
 
 \subsection{Union Find}
@@ -394,8 +394,8 @@ Estructura de datos que permite mantener un conjunto de elementos y obtener el m
 
 \subsubsection{Formas de definirlo:}
 \begin{itemize}
-  \item Syntaxis genérica: \texttt{std::priority\_queue<type> name;}
-  \item Para un heap mínimo: \texttt{std::priority\_queue<type, std::vector<type>, std::greater<type>> name;}
+  \item Syntaxis genérica: \texttt{priority\_queue<type> name;}
+  \item Para un heap mínimo: \texttt{priority\_queue<type, vector<type>, greater<type>> name;}
 \end{itemize}
 
 \subsubsection{Funciones miembro:}
