@@ -8,6 +8,7 @@
 \usepackage{listings}
 \usepackage{comment}
 \usepackage{xcolor}
+\usepackage{verse}
 \geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
 
 
@@ -31,20 +32,47 @@
 }
 
 \title{Apuntes Algoco}
-\author{Marco Repetto}
+\author{Marco Repetto y Oscar Ruiz}
 \date{}
 
 \begin{document}
 \maketitle
+
+
+% Centrar el contenido en la página
+\vspace*{\fill} % Espacio flexible desde arriba
+\begin{center}
+{\Large % Texto del poema en tamaño grande
+Dios te salve, María, \\
+llena eres de gracia; \\
+el Señor es contigo. \\
+Bendita Tú eres \\
+entre todas las mujeres, \\
+y bendito es el fruto de tu vientre, Jesús. \\
+Santa María, Madre de Dios, \\
+ruega por nosotros, pecadores, \\
+ahora y en la hora de nuestra muerte. Amén.
+}
+\end{center}
+\vspace*{\fill} % Espacio flexible hacia abajo
+\newpage
 \tableofcontents
+
+
+
+
+
+
+
 \newpage
 
 % Incluye cada sección en el documento principal
+\include{plantilla_inicio}
 \include{estructuras_de_datos}
 \include{snippets}
-\include{algoritmos}
 \include{aproximaciones}
 \include{ejercicios}
+\include{complejidades}
 
 \end{document}
 
