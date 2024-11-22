@@ -1,30 +1,27 @@
 \section{Estructura Base para Problemas de Algoritmos}
 
 \begin{lstlisting}[style=cpp]
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <numeric> // std::accumulate
-#include <limits>  // std::numeric_limits
-#include <queue>   // Para BFS y estructuras greedy
-#include <stack>   // Para backtracking basado en pila
-#include <map>     // Para memoización en DP
-#include <set>     // Para soluciones greedy con sets
-using namespace std;
+# include <bits/stdc++.h>
 
-#define INF numeric_limits<int>::max()
-#define MINF numeric_limits<int>::min()
-#define pb push_back
-#define all(v) (v).begin(), (v).end()
-#define fast_io ios::sync_with_stdio(false); cin.tie(nullptr);
+using namespace std;
 
 typedef long long ll;
 typedef pair<int, int> pii;
 
+const int INF = 1e9;
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    // Instrucciones del problema
+    return 0;
+}
 \end{lstlisting}
 
-\newpage
-\section{Plantilla para Fuerza Bruta}
+
+\subsection{Plantilla para Fuerza Bruta}
 
 \begin{lstlisting}[style=cpp]
 // Fuerza Bruta: Generar todas las combinaciones posibles
@@ -44,17 +41,17 @@ void fuerzaBruta(const vector<int>& nums) {
 
 \end{lstlisting}
 
-\section{Plantilla para Programación Dinámica}
+\subsection{Plantilla para Programacion Dinamica}
 
 \begin{lstlisting}[style=cpp]
-// Memoización (Top-Down)
+// Memoizacion (Top-Down)
 map<pair<int, int>, int> memo;
 
 int DP(int i, int j) {
     if (i == 0 || j == 0) return 0; // Caso base
     if (memo.find({i, j}) != memo.end()) return memo[{i, j}];
     
-    // Supongamos que el problema requiere comparar dos índices
+    // Supongamos que el problema requiere comparar dos indices
     int result = max(DP(i - 1, j), DP(i, j - 1));
     memo[{i, j}] = result;
     return result;
@@ -75,25 +72,25 @@ int DP_iterative(const vector<int>& nums) {
 
 \end{lstlisting}
 
-\section{Plantilla para Algoritmos Greedy}
+\subsection{Plantilla para Algoritmos Greedy}
 
 \begin{lstlisting}[style=cpp]
 int greedy(vector<int>& nums) {
     sort(all(nums)); // Ordenar para facilitar decisiones
     int result = 0;
     for (int i = 0; i < nums.size(); ++i) {
-        result += nums[i]; // O cualquier lógica greedy
+        result += nums[i]; // O cualquier logica greedy
     }
     return result;
 }
 \end{lstlisting}
-\newpage
-\section{Plantilla para Backtracking}
+
+\subsection{Plantilla para Backtracking}
 
 \begin{lstlisting}[style=cpp]
 void backtracking(vector<int>& nums, vector<int>& solution, vector<bool>& used) {
     if (solution.size() == nums.size()) {
-        // Procesar solución válida
+        // Procesar solucion valida
         for (int x : solution) cout << x << " ";
         cout << endl;
         return;
@@ -113,7 +110,7 @@ void backtracking(vector<int>& nums, vector<int>& solution, vector<bool>& used) 
 
 \end{lstlisting}
 
-\section{Plantilla para Dividir y Conquistar}
+\subsection{Plantilla para Dividir y Conquistar}
 
 \begin{lstlisting}[style=cpp]
 int divideYConquista(const vector<int>& nums, int l, int r) {
@@ -125,405 +122,9 @@ int divideYConquista(const vector<int>& nums, int l, int r) {
 }
 \end{lstlisting}
 
-\section{Funciones y Atajos Útiles}
+\section{Funciones y Atajos utiles}
 
-Aquí se incluyen algunas funciones útiles que podrías necesitar durante el certamen.
-
-\subsection{Funciones Útiles}
-
-\begin{itemize}
-    \item \texttt{max(a, b)}: Retorna el mayor entre los dos valores \texttt{a} y \texttt{b}.
-    \item \texttt{min(a, b)}: Retorna el menor entre los dos valores \texttt{a} y \texttt{b}.
-    \item \texttt{sort(v.begin(), v.end())}: Ordena el vector \texttt{v} de menor a mayor.
-    \item \texttt{reverse(v.begin(), v.end())}: Invierte el orden de los elementos del vector \texttt{v}.
-    \item \texttt{find(v.begin(), v.end(), x)}: Retorna un iterador al primer elemento igual a \texttt{x} en el vector \texttt{v}.
-    \item Impresion de estructuras:
-    \begin{lstlisting}[style=cpp]
-    void printVector(const vector<int>& v) {
-        for (int x : v) cout << x << " ";
-        cout << endl;
-    }
-    \end{lstlisting}
-    \item accumulate: Suma rápida de un vector:
-    \begin{lstlisting}[style=cpp]
-    int sum = accumulate(all(nums), 0);
-    \end{lstlisting}
-    \item sort con un comparador personalizado:
-    \begin{lstlisting}[style=cpp]
-    sort(all(nums), [](int a, int b) { return a > b; });
-    \end{lstlisting}
-    \item Búsqueda Binaria:
-    \begin{lstlisting}[style=cpp]
-    int index = lower_bound(all(nums), target) - nums.begin();
-    \end{lstlisting}
-\end{itemize}
-
-\subsection{Atajos de C++}
-
-\begin{itemize}
-    \item \texttt{cin} y \texttt{cout}: Para la entrada y salida de datos. Ejemplo: \texttt{cin >> x;} y \texttt{cout << x << endl;}
-    \item \texttt{vector<int> v(n)}: Crear un vector \texttt{v} de tamaño \texttt{n}.
-    \item \texttt{pair<int, int> p(a, b)}: Crear un par de enteros \texttt{p}.
-    \item \texttt{string s(n, 'c')}: Crear una cadena de caracteres \texttt{s} de tamaño \texttt{n} con el carácter \texttt{c}.
-\end{itemize}
+Aqui se incluyen algunas funciones utiles que podrias necesitar durante el certamen.
 
 
 
-\section{Ejemplos Paradigmas}
-
-\subsection{Fuerza Bruta}
-    \begin{lstlisting}[style=cpp]
-    #include <iostream>
-    #include <vector>
-    #include <climits>
-    using namespace std;
-    
-    int maxSubarraySum(vector<int>& nums) {
-        int n = nums.size();
-        int maxSum = INT_MIN;
-    
-        for (int i = 0; i < n; ++i) {            // O(n)
-            int currentSum = 0;
-            for (int j = i; j < n; ++j) {        // O(n)
-                currentSum += nums[j];
-                maxSum = max(maxSum, currentSum);
-            }
-        }
-        return maxSum;
-    }
-    
-    int main() {
-        vector<int> nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-        cout << "Maximum Subarray Sum: " << maxSubarraySum(nums) << endl;
-        return 0;
-    }
-    \end{lstlisting}
-    \textbf{Complejidad Temporal: }
-    \begin{itemize}
-        \item \textbf{Peor Caso: }$O(n^2)$ (dos bucles anidados).
-        \item \textbf{Mejor caso: }$O(n)$ si encuentra rapidamente una solucion optima.
-    \end{itemize}
-\newpage
-    \subsection{Programacion Dinamica}
-    \begin{lstlisting}[style=cpp]
-   #include <iostream>
-#include <vector>
-using namespace std;
-
-int knapsack(vector<int>& weights, vector<int>& values, int W) {
-    int n = weights.size();
-    vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));
-
-    for (int i = 1; i <= n; ++i) {                   // O(n)
-        for (int w = 1; w <= W; ++w) {               // O(W)
-            if (weights[i - 1] <= w) {
-                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1]);
-            } else {
-                dp[i][w] = dp[i - 1][w];
-            }
-        }
-    }
-    return dp[n][W];
-}
-
-int main() {
-    vector<int> weights = {1, 2, 3};
-    vector<int> values = {6, 10, 12};
-    int W = 5;
-    cout << "Maximum Value: " << knapsack(weights, values, W) << endl;
-    return 0;
-}
-
-    \end{lstlisting}
-    \textbf{Complejidad Temporal: }
-    \begin{itemize}
-        \item \textbf{Peor Caso: }$O(n *W)$, donde n es el numero de objetos y W es la capacidad de la mochila.
-        \item \textbf{Espacio: }$O(n*W).$
-    \end{itemize}
-\newpage
-    \subsection{Algoritmo Greedy}
-    \begin{lstlisting}[style=cpp]
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-
-int activitySelection(vector<pair<int, int>>& activities) {
-    sort(activities.begin(), activities.end(), [](pair<int, int> a, pair<int, int> b) {
-        return a.second < b.second; // Ordenar por tiempo de finalización
-    });
-
-    int count = 1;
-    int lastFinish = activities[0].second;
-
-    for (int i = 1; i < activities.size(); ++i) {    // O(n)
-        if (activities[i].first >= lastFinish) {
-            ++count;
-            lastFinish = activities[i].second;
-        }
-    }
-    return count;
-}
-
-int main() {
-    vector<pair<int, int>> activities = {{1, 3}, {2, 5}, {4, 6}, {6, 8}, {5, 7}};
-    cout << "Maximum Activities: " << activitySelection(activities) << endl;
-    return 0;
-}
-
-
-    \end{lstlisting}
-    \textbf{Complejidad Temporal: }
-    \begin{itemize}
-        \item \textbf{Ordenar: }$O(n*logn)$, donde n es el numero de objetos y W es la capacidad de la mochila.
-        \item \textbf{Seleccion: }$O(n).$
-    \end{itemize}
-\newpage
-    \subsection{Backtracking}
-        \begin{lstlisting}[style=cpp]
-#include <iostream>
-#include <vector>
-using namespace std;
-
-bool isSafe(vector<string>& board, int row, int col, int n) {
-    for (int i = 0; i < row; ++i) {
-        if (board[i][col] == 'Q') return false;
-        if (col - (row - i) >= 0 && board[i][col - (row - i)] == 'Q') return false;
-        if (col + (row - i) < n && board[i][col + (row - i)] == 'Q') return false;
-    }
-    return true;
-}
-
-void solve(vector<string>& board, int row, int n, vector<vector<string>>& solutions) {
-    if (row == n) {
-        solutions.push_back(board);
-        return;
-    }
-    for (int col = 0; col < n; ++col) {
-        if (isSafe(board, row, col, n)) {
-            board[row][col] = 'Q';
-            solve(board, row + 1, n, solutions);
-            board[row][col] = '.'; // Backtrack
-        }
-    }
-}
-
-vector<vector<string>> solveNQueens(int n) {
-    vector<vector<string>> solutions;
-    vector<string> board(n, string(n, '.'));
-    solve(board, 0, n, solutions);
-    return solutions;
-}
-
-int main() {
-    int n = 8; // Cambiar según el problema
-    auto solutions = solveNQueens(n);
-    cout << "Total Solutions: " << solutions.size() << endl;
-    return 0;
-}
-
-
-    \end{lstlisting}
-    \textbf{Complejidad Temporal: }
-    \begin{itemize}
-        \item \textbf{Peor Caso: }$O(N!)$, ya que explora todas las posibles configuraciones de las reinas.
-
-    \end{itemize}
-
-\newpage
-    \subsection{Dividir y Conquistar}
-
-        \begin{lstlisting}[style=cpp]
-#include <iostream>
-#include <vector>
-#include <climits>
-using namespace std;
-
-int maxCrossingSum(vector<int>& nums, int l, int m, int r) {
-    int leftSum = INT_MIN, rightSum = INT_MIN;
-    int sum = 0;
-
-    for (int i = m; i >= l; --i) {
-        sum += nums[i];
-        leftSum = max(leftSum, sum);
-    }
-
-    sum = 0;
-    for (int i = m + 1; i <= r; ++i) {
-        sum += nums[i];
-        rightSum = max(rightSum, sum);
-    }
-
-    return leftSum + rightSum;
-}
-
-int maxSubarraySum(vector<int>& nums, int l, int r) {
-    if (l == r) return nums[l];
-    int m = l + (r - l) / 2;
-    return max({maxSubarraySum(nums, l, m),
-                maxSubarraySum(nums, m + 1, r),
-                maxCrossingSum(nums, l, m, r)});
-}
-
-int main() {
-    vector<int> nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-    cout << "Maximum Subarray Sum: " << maxSubarraySum(nums, 0, nums.size() - 1) << endl;
-    return 0;
-}
-
-
-    \end{lstlisting}
-    \textbf{Complejidad Temporal: }
-    \begin{itemize}
-        \item \textbf{Peor Caso: }$O(n *logn)$, debido a la recurrencia $T(n) = 2T(n/2) + O(n).$
-
-    \end{itemize}
-
-\newpage
-    \section{Laboratorio Seba}
-    \subsection{Monedas}
-
-
-    \begin{lstlisting}[style=cpp]
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <numeric> // std::accumulate
-#include <limits>  // std::numeric_limits
-#include <queue>   // Para BFS y estructuras greedy
-#include <stack>   // Para backtracking basado en pila
-#include <map>     // Para memoización en DP
-#include <set>     // Para soluciones greedy con sets
-using namespace std;
-
-#define INF numeric_limits<int>::max()
-#define MINF numeric_limits<int>::min()
-#define pb push_back
-#define all(v) (v).begin(), (v).end()
-#define fast_io ios::sync_with_stdio(false); cin.tie(nullptr);
-
-typedef long long ll;
-typedef pair<int, int> pii;
-
-int main() {
-    int n, x;
-    cin >> n >> x;
-
-    vector<int> coins(n);
-    for (int i = 0; i < n; ++i) {
-        cin >> coins[i];
-    }
-
-    vector<int> dp(x + 1, INF);
-    dp[0] = 0; 
-
-    for (int i = 0; i < n; ++i) {
-        for (int j = coins[i]; j <= x; ++j) {
-            if (dp[j - coins[i]] != INF) {
-                dp[j] = min(dp[j], dp[j - coins[i]] + 1);
-            }
-        }
-    }
-
-    if (dp[x] == INF) {
-        cout << -1 << endl;
-    } else {
-        cout << dp[x] << endl;
-    }
-
-    return 0;
-}
-\end{lstlisting}
-\newpage
-\subsection{Creando Strings}
-
-\begin{lstlisting}[style=cpp]
-#include <iostream>
-#include <set>
-#include <string>
-using namespace std;
-
-// Función recursiva para generar permutaciones únicas
-void generatePermutations(string& str, int start, set<string>& result) {
-    if (start == str.size()) {
-        result.insert(str); // Almacenar la permutación completa en el set
-        return;
-    }
-
-    for (int i = start; i < str.size(); ++i) {
-        swap(str[start], str[i]);                // Intercambiar caracteres
-        generatePermutations(str, start + 1, result); // Llamada recursiva
-        swap(str[start], str[i]);                // Revertir el intercambio (backtrack)
-    }
-}
-
-// Función principal para obtener todas las permutaciones
-set<string> allPermutations(string str) {
-    set<string> result;
-    generatePermutations(str, 0, result);
-    cout << result.size() << endl;
-    return result;
-}
-
-int main() {
-    string input;
-    cin >> input;
-    auto permutations = allPermutations(input);
-    for (const auto& permutation : permutations) {
-        cout << permutation << endl;
-    }
-
-    return 0;
-}
-\end{lstlisting}
-\newpage
-\subsection{Subarrays}
-\begin{lstlisting}[style=cpp]
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <numeric> // std::accumulate
-#include <limits>  // std::numeric_limits
-#include <queue>   // Para BFS y estructuras greedy
-#include <stack>   // Para backtracking basado en pila
-#include <map>     // Para memoización en DP
-#include <set>     // Para soluciones greedy con sets
-using namespace std;
-
-#define INF numeric_limits<int>::max()
-#define MINF numeric_limits<int>::min()
-#define pb push_back
-#define all(v) (v).begin(), (v).end()
-#define fast_io ios::sync_with_stdio(false); cin.tie(nullptr);
-
-typedef long long ll;
-typedef pair<int, int> pii;
-
-
-int main() {
-    int largo;
-    int suma;
-    cin >> largo >> suma;
-
-    vector<int> arr(largo);
-    for (int i = 0; i < largo; ++i) {
-        cin >> arr[i];
-    }
-
-    int subarrays = 0;
-    int resultado = 0;
-    int izq = 0;
-    for (int i = 0; i < largo; ++i) {
-        resultado += arr[i];
-        while (resultado > suma){
-            resultado -= arr[izq];
-            izq++;
-        }
-        if (resultado == suma) {
-            subarrays++;
-        }
-    }
-    cout << subarrays << endl;
-    return 0;
-}
-\end{lstlisting}
