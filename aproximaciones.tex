@@ -98,17 +98,197 @@ La programación dinámica es una técnica que se basa en dividir un problema en
   \item Problema del comerciante viajero con restricciones. 
 \end{enumerate}
 
-\subsection{}
+\subsection{Divide and Conquer}  
+% Explicación  
+El enfoque de dividir y conquistar se basa en descomponer un problema grande en varios subproblemas más pequeños, resolver estos subproblemas de forma recursiva y luego combinar sus soluciones para obtener el resultado final. Este método es particularmente efectivo para problemas cuya estructura permite una partición natural en partes independientes o semi-independientes. Es utilizado en algoritmos clásicos como el ordenamiento por fusión (merge sort) y la búsqueda binaria.  
 
-\subsection{Divide and Conquer}
+\subsubsection{Patrones en los enunciados que indican que se puede aplicar}  
+\begin{enumerate}  
+  \item \textbf{Entradas}:  
+  Los problemas generalmente involucran estructuras de datos que se pueden dividir fácilmente, como listas, matrices o intervalos. Suelen tener límites suficientemente grandes como para que un enfoque iterativo pueda ser ineficiente.  
 
-\subsection{DFS}
+  \item \textbf{Salidas}:  
+  Se solicita resolver el problema completo combinando soluciones de subproblemas. Ejemplos comunes incluyen:  
+  \begin{itemize}  
+    \item Ordenar datos (como en merge sort o quick sort).  
+    \item Encontrar elementos específicos con restricciones (como búsqueda binaria).  
+    \item Procesar intervalos o divisiones de datos, como la multiplicación de matrices o problemas geométricos.  
+  \end{itemize}  
 
-\subsection{BFS}
+  \item \textbf{Subproblemas independientes}:  
+  El problema puede dividirse en partes más pequeñas que son relativamente independientes. Esto significa que las soluciones de estos subproblemas no se superponen ni dependen entre sí, excepto en la etapa final de combinación. Algunos patrones comunes incluyen:  
+  \begin{itemize}  
+    \item División de un arreglo o lista en mitades.  
+    \item Descomposición de problemas geométricos en cuadrantes o regiones.  
+    \item Resolución de instancias más pequeñas de forma recursiva.  
+  \end{itemize}  
 
-\subsection{Binary Search}
+\item \textbf{Pistas en el enunciado}:  
+  \begin{enumerate}  
+    \item Se menciona explícitamente la posibilidad de dividir el problema en partes más pequeñas.  
+    \item Hay una estructura jerárquica o acumulativa que sugiere combinar soluciones parciales.  
+    \item Los límites del problema son suficientemente grandes como para que un enfoque iterativo pueda ser lento, pero la recursión permite reducir significativamente el espacio de búsqueda.  
+    \item El problema tiene una estructura repetitiva o recurrente que facilita la subdivisión.  
+  \end{enumerate}  
+\end{enumerate}  
 
-\subsection{Backtracking}
+\subsubsection{Formas de construir la solución}  
+\begin{enumerate}  
+  \item \textbf{Dividir el problema}: Identificar cómo descomponer el problema en partes más pequeñas e independientes.  
+  \begin{itemize}  
+    \item Pregúntate: "¿Cómo puedo particionar los datos o el espacio del problema?" (por ejemplo, dividir un arreglo en mitades, particionar un espacio geométrico, etc.).  
+  \end{itemize}  
+
+  \item \textbf{Resolver recursivamente los subproblemas}: Abordar cada subproblema de forma independiente mediante el mismo enfoque recursivo.  
+  \begin{itemize}  
+    \item Confirma que cada subproblema es una versión más pequeña del problema original.  
+    \end{itemize}  
+
+  \item \textbf{Combinar las soluciones}: Diseñar una estrategia para integrar los resultados de los subproblemas y obtener la solución global.  
+  \begin{itemize}  
+    \item Ejemplo: Fusionar listas ordenadas en merge sort.  
+    \item Ejemplo: Comparar resultados de cuadrantes en un problema geométrico.  
+  \end{itemize}  
+
+  \item \textbf{Asegurar la corrección}: Verifica que los subproblemas sean suficientes para cubrir todo el problema inicial y que la combinación no pierda información.  
+
+  \item \textbf{Optimizar la división y la combinación}: Analiza el costo de las etapas de división y combinación para asegurarte de que el enfoque es eficiente (por ejemplo, $O(\log n)$ divisiones y combinaciones en $O(n)$).  
+\end{enumerate}  
+
+\subsubsection{Problemas específicos que se resuelven con dividir y conquistar}  
+\begin{enumerate}  
+  \item Merge Sort.  
+  \item Quick Sort.  
+  \item Binary Search.  
+  \item Multiplicación de matrices de Strassen.  
+  \item Closest Pair of Points (problema geométrico).  
+  \item Encontrar la subcadena palíndroma más larga.  
+  \item Potenciación rápida (exponentiation by squaring).  
+  \item Resolver el problema de las torres de Hanoi.  
+  \item Transformadas rápidas (como FFT).  
+  \item Problemas de máximos y mínimos en listas descompuestas.  
+\end{enumerate} 
+
+\subsection{Backtracking}  
+% Explicación  
+El backtracking es una técnica que explora todas las posibles soluciones de un problema mediante la construcción incremental de candidatos y retrocediendo (backtrack) cuando una solución parcial no cumple con las restricciones del problema. Es útil para resolver problemas que requieren encontrar una solución exacta, como juegos, combinaciones o problemas de búsqueda en árboles o grafos.  
+
+\subsubsection{Patrones en los enunciados que indican que se puede aplicar}  
+\begin{enumerate}  
+  \item \textbf{Entradas:} Los problemas suelen incluir estructuras como arreglos, listas, conjuntos o grafos. Por lo general, el espacio de soluciones es grande, pero está bien definido y puede explorarse sistemáticamente.  
+  \item \textbf{Salidas:} Se busca una solución exacta que cumpla con restricciones específicas. Algunos casos típicos incluyen:  
+  \begin{itemize}  
+    \item Encontrar todas las combinaciones o permutaciones posibles que satisfacen una condición.  
+    \item Resolver problemas de decisión como verificar si existe una solución bajo restricciones específicas.  
+    \item Identificar una solución óptima en un espacio reducido de búsqueda (por ejemplo, rutas mínimas en problemas con pocas restricciones).  
+  \end{itemize}  
+  \item \textbf{Características de la solución:}  
+  \begin{itemize}  
+    \item El problema puede representarse como una serie de decisiones en un árbol de búsqueda.  
+    \item Es posible verificar si una solución parcial es válida en cualquier punto del proceso.  
+    \item Se puede retroceder de una solución parcial inválida sin explorar todas las decisiones derivadas de ella.  
+  \end{itemize}  
+  \item \textbf{Pistas en el enunciado:}  
+  \begin{enumerate}  
+    \item Se solicita enumerar o encontrar todas las soluciones posibles.  
+    \item Las restricciones o condiciones son explícitas y determinan si una solución es válida en cada paso (como problemas de sudokus o laberintos).  
+    \item La estructura del problema sugiere un proceso exploratorio donde las decisiones previas limitan las decisiones futuras.  
+    \item El espacio de búsqueda es grande, pero no lo suficiente como para que sea completamente inabordable mediante enfoques sistemáticos (usualmente hasta $10^6$ posibles soluciones).  
+  \end{enumerate}  
+\end{enumerate}  
+
+\subsubsection{Formas de estructurar la solución con backtracking}  
+
+\begin{enumerate}  
+  \item \textbf{Definir las decisiones:} Identifica qué decisiones se deben tomar en cada paso para construir una solución. Por ejemplo: ¿qué elemento agregar a la solución parcial?, ¿qué movimiento realizar en un tablero?, etc.  
+  \item \textbf{Estructurar el árbol de búsqueda:} Representa las posibles decisiones como un árbol, donde cada nodo corresponde a una decisión parcial.  
+  \item \textbf{Verificar la validez de las soluciones parciales:} Implementa una función que determine si una solución parcial cumple con las restricciones del problema. Esto evita explorar ramas inválidas del árbol de búsqueda.  
+  \item \textbf{Retroceder al encontrar un callejón sin salida:} Al llegar a una solución inválida o completa, vuelve al nodo anterior y explora otras ramas. Este retroceso se implementa mediante un enfoque recursivo o explícito con pilas.  
+  \item \textbf{Usar poda (pruning):} Implementa optimizaciones para reducir el espacio de búsqueda al eliminar decisiones innecesarias o redundantes (por ejemplo, detenerse si ya se excedió un límite o si una solución parcial no puede ser óptima).  
+  \item \textbf{Probar con ejemplos pequeños:} Utiliza casos pequeños para validar que el proceso de exploración y retroceso funciona correctamente. Esto es clave para evitar errores en la implementación recursiva.  
+\end{enumerate}  
+
+\subsubsection{Problemas específicos que se resuelven con backtracking}  
+
+\begin{enumerate}  
+  \item Sudoku Solver.  
+  \item N-Queens Problem.  
+  \item Subset Sum Problem.  
+  \item Permutations and Combinations.  
+  \item Crossword Puzzle Fitting.  
+  \item Word Search in a Grid.  
+  \item Hamiltonian Path or Cycle.  
+  \item Graph Coloring Problem.  
+  \item Knight's Tour Problem.  
+  \item Maze Solving (con restricciones específicas).  
+\end{enumerate}
 
 \subsection{Greedy}
+% Explicación  
+El enfoque greedy se basa en tomar decisiones locales óptimas en cada paso con la esperanza de que estas conduzcan a una solución global óptima. Es una técnica eficiente cuando se puede garantizar que estas decisiones locales óptimas construyen la mejor solución general. Ejemplos clásicos incluyen encontrar un camino de menor costo en un grafo, seleccionar actividades que maximicen el uso de recursos, o construir códigos óptimos de compresión.  
+
+\subsubsection{Patrones en los enunciados que indican que se puede aplicar}  
+\begin{enumerate}  
+  \item Entradas:  
+  Los problemas suelen involucrar estructuras de datos como listas, grafos, o conjuntos ordenables. Las entradas tienden a tener relaciones ordenables o métricas claras (por ejemplo, peso, tiempo, costo, prioridad).  
+
+  \item Salidas:  
+  Se solicita optimizar una métrica bajo restricciones, como maximizar el beneficio o minimizar el costo. Los problemas típicos incluyen:  
+  \begin{itemize}  
+    \item Seleccionar subconjuntos de elementos (por ejemplo, actividades, rutas, tareas).  
+    \item Minimizar tiempos, costos o recursos.  
+    \item Maximizar beneficios, utilidades o valores acumulados.  
+  \end{itemize}  
+
+  \item Decisiones locales óptimas:  
+  Los problemas pueden descomponerse en una secuencia de decisiones en las que elegir la opción "más prometedora" en cada paso conduce a la solución. Algunos patrones comunes incluyen:  
+  \begin{itemize}  
+    \item Ordenar elementos según alguna métrica (por ejemplo, menor costo, mayor beneficio, más cercano).  
+    \item Seleccionar el elemento "mejor" disponible para añadir al resultado parcial (ejemplo: elegir una actividad con el tiempo de finalización más temprano).  
+    \item Evitar elementos que no cumplen con las restricciones de manera evidente.  
+  \end{itemize}  
+
+  \item Pistas en el enunciado:  
+  \begin{enumerate}  
+    \item Se menciona una relación directa entre decisiones locales y resultados globales (por ejemplo, "elige siempre el elemento más pequeño/más grande").  
+    \item Las restricciones permiten dividir el problema en partes independientes que pueden resolverse localmente.  
+    \item La solución óptima puede derivarse directamente de una estructura ordenada (lista, cola de prioridad, grafo ponderado).  
+    \item Los límites del problema hacen que enfoques más complejos (como programación dinámica) sean innecesarios.  
+  \end{enumerate}  
+\end{enumerate}  
+
+\subsubsection{Formas de diseñar un algoritmo Greedy}  
+\begin{enumerate}  
+  \item \textbf{Definir una estrategia greedy:} Identificar cuál es la decisión local óptima que puede tomarse en cada paso. Pregúntate:  
+  \begin{itemize}  
+    \item "¿Qué elemento puedo elegir ahora para acercarme más a la solución final?"  
+    \item "¿Cómo ordeno los elementos para facilitar la selección?"  
+  \end{itemize}  
+
+  \item \textbf{Justificar la optimalidad:} Asegúrate de que la estrategia greedy lleve a la solución global óptima. Esto puede implicar probar que el problema cumple:  
+  \begin{itemize}  
+    \item \textbf{Propiedad greedy:} Una decisión local óptima siempre forma parte de una solución global óptima.  
+    \item \textbf{Subestructura óptima:} Un problema puede resolverse combinando soluciones óptimas de subproblemas independientes.  
+  \end{itemize}  
+
+  \item \textbf{Ordenar o priorizar elementos:} A menudo, es necesario ordenar los datos de entrada de acuerdo con alguna métrica o criterio (por ejemplo, costo ascendente, beneficio descendente). Esto facilita la selección greedy.  
+
+  \item \textbf{Tomar decisiones iterativas:} Recorre los elementos ordenados y aplica la estrategia greedy. Cada decisión debe ser localmente óptima y respetar las restricciones del problema.  
+
+  \item \textbf{Validar con ejemplos pequeños:} Probar la solución en casos simples ayuda a identificar si el enfoque es correcto o si hay contraejemplos que violen la optimalidad global.  
+\end{enumerate}  
+
+\subsubsection{Problemas específicos que se resuelven con un enfoque Greedy}  
+\begin{enumerate}  
+  \item Activity Selection Problem.  
+  \item Fractional Knapsack Problem.  
+  \item Huffman Coding.  
+  \item Dijkstra’s Shortest Path Algorithm.  
+  \item Kruskal’s Minimum Spanning Tree.  
+  \item Prim’s Minimum Spanning Tree.  
+  \item Interval Scheduling Maximization.  
+  \item Job Sequencing Problem.  
+  \item Coin Change (para denominaciones estándar).  
+  \item Problemas de cobertura mínima (Set Cover Problem, aproximado).  
+\end{enumerate} 
 

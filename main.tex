@@ -1,34 +1,33 @@
 \documentclass{article}
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{graphicx}
-\usepackage{hyperref}      % Para hipervínculos
+\usepackage{hyperref}      % Para hipervinculos
 \usepackage{geometry}
 \usepackage{multicol}
 \usepackage{array}
 \usepackage{listings}
 \usepackage{comment}
 \usepackage{xcolor}
-\usepackage{verse}
 \geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
 
 
-% Definir márgenes de la página para evitar desbordamientos
+% Definir margenes de la pagina para evitar desbordamientos
 \geometry{a4paper, margin=1in}
 
-% Definir el estilo de los códigos en C++
+% Definir el estilo de los codigos en C++
 \lstdefinestyle{cpp}{
     language=C++, 
     backgroundcolor=\color{white}, 
     basicstyle=\ttfamily\footnotesize, 
-    breaklines=true,               % Hacer que el código se divida automáticamente
-    breakatwhitespace=true,        % Romper las líneas solo en espacios
+    breaklines=true,               % Hacer que el codigo se divida automaticamente
+    breakatwhitespace=true,        % Romper las lineas solo en espacios
     keywordstyle=\color{blue},
     commentstyle=\color{lightgray},
     stringstyle=\color{red},
     showstringspaces=false,
     xleftmargin=10pt,              % Margen izquierdo
     xrightmargin=10pt,             % Margen derecho
-    frame=single                   % Agregar borde al código
+    frame=single                   % Agregar borde al codigo
 }
 
 \title{Apuntes Algoco}
@@ -39,34 +38,26 @@
 \maketitle
 
 
-% Centrar el contenido en la página
+% Centrar el contenido en la pagina
 \vspace*{\fill} % Espacio flexible desde arriba
 \begin{center}
 {\Large % Texto del poema en tamaño grande
-Dios te salve, María, \\
+Dios te salve, Maria, \\
 llena eres de gracia; \\
 el Señor es contigo. \\
-Bendita Tú eres \\
+Bendita Tu eres \\
 entre todas las mujeres, \\
-y bendito es el fruto de tu vientre, Jesús. \\
-Santa María, Madre de Dios, \\
+y bendito es el fruto de tu vientre, Jesus. \\
+Santa Maria, Madre de Dios, \\
 ruega por nosotros, pecadores, \\
-ahora y en la hora de nuestra muerte. Amén.
+ahora y en la hora de nuestra muerte. Amen.
 }
 \end{center}
 \vspace*{\fill} % Espacio flexible hacia abajo
 \newpage
 \tableofcontents
 
-
-
-
-
-
-
-\newpage
-
-% Incluye cada sección en el documento principal
+% Incluye cada seccion en el documento principal
 \include{plantilla_inicio}
 \include{estructuras_de_datos}
 \include{snippets}

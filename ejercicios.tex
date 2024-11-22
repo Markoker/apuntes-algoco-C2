@@ -33,12 +33,18 @@
         \item \textbf{Mejor caso: }$O(n)$ si encuentra rapidamente una solucion optima.
     \end{itemize}
 
-\subsection{Programacion Dinamica}
+\subsection{Knapsack}
+% Explicacion
+\begin{itemize}
+  \item \textbf{Problema: }Dado un conjunto de objetos con pesos y valores, determinar el valor maximo que se puede obtener seleccionando objetos que no excedan una capacidad $W$. 
+  \item \textbf{Entrada: }Un entero $W$ $(1 \leq W \leq 10^3)$ que representa la capacidad de la mochila, seguido de $n$ enteros que representan los pesos de los objetos, y $n$ enteros que representan los valores de los objetos. 
+  \item \textbf{Salida: }Imprimir el valor maximo que se puede obtener seleccionando objetos que no excedan la capacidad $W$. 
+
+  \item \textbf{Paradigma: } Programacion Dinamica
+\end{itemize}
+
+    
     \begin{lstlisting}[style=cpp]
-   
-
-using namespace std;
-
 int knapsack(vector<int>& weights, vector<int>& values, int W) {
     int n = weights.size();
     vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));

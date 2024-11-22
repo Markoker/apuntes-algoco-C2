@@ -1,20 +1,15 @@
-\section{Estructura Base para Problemas de Algoritmos}
+\section{Plantillas}
+\subsection{Estructura Base para Problemas de Algoritmos}
 
 \begin{lstlisting}[style=cpp]
-#include <iostream>
-#include <vector>
 #include <algorithm>
-#include <numeric> // std::accumulate
-#include <limits>  // std::numeric_limits
-#include <queue>   // Para BFS y estructuras greedy
-#include <stack>   // Para backtracking basado en pila
-#include <map>     // Para memoización en DP
-#include <set>     // Para soluciones greedy con sets
+#include <bits/stdc++.h>
 using namespace std;
 
 #define INF numeric_limits<int>::max()
 #define MINF numeric_limits<int>::min()
 #define pb push_back
+#define pp pop_back
 #define all(v) (v).begin(), (v).end()
 #define fast_io ios::sync_with_stdio(false); cin.tie(nullptr);
 
@@ -24,7 +19,7 @@ typedef pair<int, int> pii;
 \end{lstlisting}
 
 
-\section{Plantilla para Fuerza Bruta}
+\subsection{Plantilla para Fuerza Bruta}
 
 \begin{lstlisting}[style=cpp]
 // Fuerza Bruta: Generar todas las combinaciones posibles
@@ -44,17 +39,17 @@ void fuerzaBruta(const vector<int>& nums) {
 
 \end{lstlisting}
 
-\section{Plantilla para Programación Dinámica}
+\subsection{Plantilla para Programacion Dinamica}
 
 \begin{lstlisting}[style=cpp]
-// Memoización (Top-Down)
+// Memoizacion (Top-Down)
 map<pair<int, int>, int> memo;
 
 int DP(int i, int j) {
     if (i == 0 || j == 0) return 0; // Caso base
     if (memo.find({i, j}) != memo.end()) return memo[{i, j}];
     
-    // Supongamos que el problema requiere comparar dos índices
+    // Supongamos que el problema requiere comparar dos indices
     int result = max(DP(i - 1, j), DP(i, j - 1));
     memo[{i, j}] = result;
     return result;
@@ -75,25 +70,25 @@ int DP_iterative(const vector<int>& nums) {
 
 \end{lstlisting}
 
-\section{Plantilla para Algoritmos Greedy}
+\subsection{Plantilla para Algoritmos Greedy}
 
 \begin{lstlisting}[style=cpp]
 int greedy(vector<int>& nums) {
     sort(all(nums)); // Ordenar para facilitar decisiones
     int result = 0;
     for (int i = 0; i < nums.size(); ++i) {
-        result += nums[i]; // O cualquier lógica greedy
+        result += nums[i]; // O cualquier logica greedy
     }
     return result;
 }
 \end{lstlisting}
 
-\section{Plantilla para Backtracking}
+\subsection{Plantilla para Backtracking}
 
 \begin{lstlisting}[style=cpp]
 void backtracking(vector<int>& nums, vector<int>& solution, vector<bool>& used) {
     if (solution.size() == nums.size()) {
-        // Procesar solución válida
+        // Procesar solucion valida
         for (int x : solution) cout << x << " ";
         cout << endl;
         return;
@@ -113,7 +108,7 @@ void backtracking(vector<int>& nums, vector<int>& solution, vector<bool>& used) 
 
 \end{lstlisting}
 
-\section{Plantilla para Dividir y Conquistar}
+\subsection{Plantilla para Dividir y Conquistar}
 
 \begin{lstlisting}[style=cpp]
 int divideYConquista(const vector<int>& nums, int l, int r) {
