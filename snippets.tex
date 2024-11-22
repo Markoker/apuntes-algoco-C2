@@ -165,3 +165,13 @@ La función \texttt{std::iota} asigna valores consecutivos a los elementos de un
 std::iota(v.begin(), v.end(), 1);
 // v = {1, 2, 3, 4, 5}
 \end{lstlisting}
+
+\subsection{Impresion de estructuras}
+
+\subsubsection{Implementacion:}
+    \begin{lstlisting}[style=cpp]
+    void printVector(const vector<int>& v) {
+        for (int x : v) cout << x << " ";
+        cout << endl;
+    }
+    \end{lstlisting}

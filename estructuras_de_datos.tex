@@ -236,7 +236,7 @@ Estructura de datos que permite almacenar elementos de forma ordenada. Cada nodo
 
 \subsubsection{Implementacion:}
 % Code 
-\begin{lstlisting}
+\begin{lstlisting}[style=cpp]
 struct Node {
   int value;
   Node* left;
@@ -330,7 +330,7 @@ Matriz donde cada celda representa una arista entre dos nodos.
 
 \subsubsection{Implementacion:}
 % Code
-\begin{lstlisting}
+\begin{lstlisting}[style=cpp]
 const int V;
 bool adj[V][V];
 int weight[V][V];
@@ -343,7 +343,7 @@ Lista de adyacencia donde cada nodo tiene una lista de nodos adyacentes.
 
 \subsubsection{Implementacion:}
 % Code
-\begin{lstlisting}
+\begin{lstlisting}[style=cpp]
 const int V;
 std::vector<int> adj[V];
 std::vector<int> weight[V];
@@ -356,7 +356,7 @@ Estructura de datos que permite realizar operaciones de unión y búsqueda en ti
 
 \subsubsection{Implementacion:}
 % Code
-\begin{lstlisting}
+\begin{lstlisting}[style=cpp]
 struct edge{
     ll from,to,weight;
 };
